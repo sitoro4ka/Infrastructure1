@@ -1,4 +1,6 @@
-data "terraform_remote_state" "this" {
+
+# Pulls VPC information
+data "terraform_remote_state" "vpc" {
   backend = "remote"
 
   config = {
@@ -10,9 +12,18 @@ data "terraform_remote_state" "this" {
   }
 }
 
+# Pulls DB information
+data "terraform_remote_state" "rds" {
+  backend = "remote"
 
+  config = {
+    organization = "rakhmatova"
 
-
+    workspaces = {
+      name = "rds"
+    }
+  }
+}
 
 
 
